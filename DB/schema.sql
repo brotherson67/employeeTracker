@@ -1,0 +1,18 @@
+CREATE TABLE departments (
+  id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  dep_name VARCHAR(50) NOT NULL,
+  dep_description NOT NULL TEXT
+);
+
+CREATE TABLE roles (
+    id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    role_name VARCHAR(15) NOT NULL,
+    role_description TEXT NOT NULL
+);
+
+CREATE TABLE employees (
+    id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    first_name NOT NULL VARCHAR(30),
+    last_name NOT NULL VARCHAR(35),
+    email NOT NULL VARCHAR(40)
+);
