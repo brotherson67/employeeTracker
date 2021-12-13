@@ -21,4 +21,7 @@ inquirer
     ])
     .then(answers => {
         console.log(answers);
+        const table = answers.table;
+        const method = answers.method;
+         
     })
