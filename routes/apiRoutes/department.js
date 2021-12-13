@@ -1,7 +1,7 @@
+// IMPORTS
 const bodyParser = require('body-parser');
 const express = require('express');
 const db = require('../../DB/dbConnection');
-const database = require('../../DB/dbConnection');
 
 const router = express.Router();
 // for the sake of security, it might be wise to input the file checking module I have in the practice module
@@ -25,20 +25,22 @@ router.post("/departments", (req, res) => {
 
 // GET METHODS 
 // ALL DEP
-router.get('/departments', (req, res) => {
-    const sql = `SELECT * FROM departments`;
+const getAll = () => {
+    router.get('/departments', (req, res) => {
+        const sql = `SELECT * FROM departments`;
 
-    db.query(sql, (err, row) => {
-        if (err) {
-            res.status(400).json({ error: err.message });
-            return;
-        }
-        res.json({
-            message: "You got all the departments",
-            data: row
+        db.query(sql, (err, row) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+            res.json({
+                message: "You got all the departments",
+                data: row
+            });
         });
     });
-});
+}
 
 // INDIVIDUAL DEPT
 router.get('/departments/:id', (req, res) => {
@@ -57,3 +59,5 @@ router.get('/departments/:id', (req, res) => {
     });
 });
 
+// EXPORTS
+module.exports = router;
