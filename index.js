@@ -7,16 +7,10 @@ const Choices = require('inquirer/lib/objects/choices');
 inquirer
     .prompt([
         {
-            name: "table",
+            name: "toDo",
             type: "list",
-            message: "What table would you like to access?",
-            choices: ["Departments", 'Roles', "Employees"]
-        },
-        {
-            name: "method",
-            type: "list",
-            message: "What are you trying to do?",
-            choices: ["View", 'Update', "Create", 'Delete']
+            message: "What would you like to do?",
+            choices: ["View departments", 'View all roles', "View all employees", 'Add a department', 'Add a role', 'Add an employee', 'Update an employees role']
         }
     ])
     .then(answers => {

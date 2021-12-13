@@ -56,3 +56,4 @@ router.get('/departments/:id', (req, res) => {
         });
     });
 });
+
