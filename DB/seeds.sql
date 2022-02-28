@@ -1,3 +1,4 @@
+USE election
 INSERT INTO departments (dep_name)
 VALUES
     ("Client Support" ),
