@@ -37,43 +37,28 @@ firstPrompt = () => {
       },
     ])
     .then((answer) => {
-      console.log(answer);
-      // console.log(answers);
-      // const choice = answers.choices;
-      // if (choice === "View departments") {
-      //   console.log("they want to view the dept");
-      //   router.get("/departments", (req, res) => {
-      //     db.query(`SELECT * FROM department`, (err, result) => {
-      //       if (err) {
-      //         console.log("Sorry, looks like there was an error getting that.");
-      //         res.status(500).json({ error: err.message });
-      //         return;
-      //       }
-      //       res.json({
-      //         message: "Nice, you got the departments",
-      //         result: body,
-      //       });
-      //     });
-      //   });
-      // }
+      return answer;
     });
 };
-firstPrompt().then((answer) => {
-  switch (answer.choice) {
-    case "View departments":
-      console.table(getDepts);
-      return;
-    case "View all roles":
-      console.table(getRoles);
-      return;
-    case "View all employees":
-      console.table(getEmployees);
-      return;
-    case "add a dept":
-  }
-});
+const test = () => {
+  firstPrompt().then((answer) => {
+    switch (answer.choice) {
+      case "View departments":
+        console.table(getDepts);
+        return;
+      case "View all roles":
+        console.table(getRoles);
+        return;
+      case "View all employees":
+        console.table(getEmployees);
+        return;
+    }
+  });
+};
 
 // START SERVER AFTER DATABASE CONNECTION
 db.connect((err) => {
   if (err) throw err;
 });
+
+test();

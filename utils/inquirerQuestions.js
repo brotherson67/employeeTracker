@@ -23,8 +23,6 @@ const addDept = () => {
       departments = getDept();
       deptArr = deptArrFill();
       return init();
-    })
-    .catch((err) => console.log("Something went wrong, couldnt add dept"));
+    });
 };
-
 module.exports = { addDept };

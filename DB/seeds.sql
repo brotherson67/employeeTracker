@@ -1,6 +1,6 @@
 USE election; 
 
-INSERT INTO departments (dep_name)
+INSERT INTO department (name)
 VALUES
     ("Client Support" ),
     ("Engineering"),
