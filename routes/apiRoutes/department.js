@@ -24,21 +24,6 @@ router.post("/departments", (req, res) => {
 });
 
 // GET METHODS
-// ALL DEP
-const getAll = () => {
-  const sql = `SELECT * FROM departments`;
-
-  db.query(sql, (err, row) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "You got all the departments",
-      data: row,
-    });
-  });
-};
 
 // INDIVIDUAL DEPT
 router.get("/departments/:id", (req, res) => {
