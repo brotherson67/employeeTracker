@@ -3,12 +3,7 @@ const inquirer = require("inquirer");
 // const inputCheck = require('./utils/inputCheck');
 const db = require("./db/dbConnection");
 const apiRoutes = require("./routes/apiRoutes");
-const {
-  getAllEmployees,
-  getAllDepts,
-  getAllRoles,
-  getAllDepts,
-} = require("./utils");
+const { getAllEmployees, getAllDepts, getAllRoles } = require("./utils");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -32,7 +27,6 @@ firstPrompt = () => {
         message: "What would you like to do?",
         choices: [
           "View departments",
-          // new inquirer.Separator(),
           "View all roles",
           "View all employees",
           "Add a department",
@@ -66,13 +60,13 @@ firstPrompt = () => {
 };
 firstPrompt().then((answer) => {
   switch (answer.choice) {
-    case "view depts":
+    case "View departments":
       console.table(getDepts);
       return;
-    case "view roles":
+    case "View all roles":
       console.table(getRoles);
       return;
-    case "view employees":
+    case "View all employees":
       console.table(getEmployees);
       return;
     case "add a dept":
@@ -82,10 +76,4 @@ firstPrompt().then((answer) => {
 // START SERVER AFTER DATABASE CONNECTION
 db.connect((err) => {
   if (err) throw err;
-  //   console.log("You've connected to the database.");
-
-  // // CONNECTION FUNCTION
-  // app.listen(PORT, () => {
-  //     console.log(`Server running on port ${PORT}`);
-  // });
 });
