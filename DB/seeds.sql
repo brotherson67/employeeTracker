@@ -7,17 +7,17 @@ VALUES
     ("C-Class"),
     ("Development");
 
-INSERT INTO roles (role_name, role_description, dep_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES 
-    ("solutions archectect", "this is a job", 2),
-    ("head honcho", "hes a leader", 3),
-    ("sales lead", "he'll sell you anything", 1);
+    ("solutions archectect", 100000, 2),
+    ("head honcho", 1200000 3),
+    ("sales lead", 80000 1);
 
-INSERT INTO employees(first_name, last_name, role_id)
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
-    ('james', 'Fraser', 1),
-    ('Jack', 'London', 2),
-    ('Robert', 'Bruce', 3),
-    ('Peter', 'Greenaway', 2),
-    ('Derek', 'Jarman', 1),
-    ('Paolo', 'Pasolini', 2);
+    ('james', 'Fraser', 1, null),
+    ('Jack', 'London', 2, 1),
+    ('Robert', 'Bruce', 3, 3),
+    ('Peter', 'Greenaway', 2, 2),
+    ('Derek', 'Jarman', 1, null),
+    ('Paolo', 'Pasolini', 2, 3);
