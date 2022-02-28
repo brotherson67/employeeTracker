@@ -3,9 +3,19 @@ const inquirer = require("inquirer");
 // const inputCheck = require('./utils/inputCheck');
 const db = require("./db/dbConnection");
 const apiRoutes = require("./routes/apiRoutes");
+const {
+  getAllEmployees,
+  getAllDepts,
+  getAllRoles,
+  getAllDepts,
+} = require("./utils");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+const getEmployees = getAllEmployees();
+const getDepts = getAllDepts();
+const getRoles = getAllRoles();
 
 // EXPRESS MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
@@ -54,7 +64,20 @@ firstPrompt = () => {
       // }
     });
 };
-firstPrompt();
+firstPrompt().then((answer) => {
+  switch (answer.choice) {
+    case "view depts":
+      console.table(getDepts);
+      return;
+    case "view roles":
+      console.table(getRoles);
+      return;
+    case "view employees":
+      console.table(getEmployees);
+      return;
+    case "add a dept":
+  }
+});
 
 // START SERVER AFTER DATABASE CONNECTION
 db.connect((err) => {
