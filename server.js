@@ -32,6 +32,32 @@ let departments = getDept();
 let roles = getRoles();
 let employees = getEmployees();
 
+const initPrompt = () => {
+  return inquirer
+    .prompt({
+      type: "list",
+      name: "choices",
+      message: "What would you like to do?",
+      choices: [
+        "view all departments",
+        "view all roles",
+        "view all employees",
+        "add a department",
+        "add a role",
+        "add an employee",
+        "update an employee role",
+        "update an employee's manager",
+        "delete a department",
+        "delete a role",
+        "delete an employee",
+        "quit",
+      ],
+    })
+    .then((ans) => {
+      return ans;
+    });
+};
+
 // EXPRESS MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
