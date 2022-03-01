@@ -33,4 +33,22 @@ const getRoles = () => {
   return roles;
 };
 
-module.exports = { getDept, getRoles };
+// Get employees
+const getEmployees = () => {
+  const employees = [];
+  db.query(
+    `SELECT e.id, e.first_name, e.last_name, roles.title AS job_title, roles.salary AS salary, department.name AS department, CONCAT(m.first_name, ' ', m.last_name) AS manager FROM employees e LEFT JOIN roles ON role_id = roles.id LEFT JOIN department ON roles.department_id = department.id LEFT JOIN employees m ON e.manager_id = m.id`,
+    (err, rows) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      for (let i = 0; i < rows.length; i++) {
+        employees.push(rows[i]);
+      }
+    }
+  );
+  return employees;
+};
+
+module.exports = { getDept, getRoles, getEmployees };
