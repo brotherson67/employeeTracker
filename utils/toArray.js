@@ -15,4 +15,37 @@ const deptArrFill = () => {
   return deptArr;
 };
 
-module.exports = { deptArrFill };
+// Populate array with roles
+const roleArrFill = () => {
+  const roleArr = [];
+  db.query(`SELECT * FROM roles`, (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    for (let i = 0; i < rows.length; i++) {
+      roleArr.push({ name: rows[i].title, value: rows[i].id });
+    }
+  });
+  return roleArr;
+};
+
+// Populate array with employees
+const employeeArrFill = () => {
+  const employeeArr = [];
+  db.query(`SELECT * FROM employees ORDER BY last_name`, (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    for (let i = 0; i < rows.length; i++) {
+      employeeArr.push({
+        name: rows[i].first_name + " " + rows[i].last_name,
+        value: rows[i].id,
+      });
+    }
+  });
+  return employeeArr;
+};
+
+module.exports = { deptArrFill, roleArrFill, employeeArrFill };
