@@ -8,16 +8,16 @@ const {
   deptArrFill,
   roleArrFill,
   employeeArrFill,
-} = require("./utils/toArray");
-const { getDept, getRoles, getEmployees } = require("./utils/getTables");
-const { newDept, newRole, newEmployee } = require("./utils/addData");
+} = require("./utils/toArray.js");
+const { getDept, getRoles, getEmployees } = require("./utils/getTables.js");
+const { newDept, newRole, newEmployee } = require("./utils/addData.js");
 const {
   updateRole,
   updateManager,
   deleteDept,
   deleteRole,
   deleteEmployee,
-} = require("./utils/alterData");
+} = require("./utils/changeData");
 
 // Array of data
 let deptArr = deptArrFill();

@@ -1,4 +1,4 @@
-const db = require("../db/connection");
+const db = require("../db/dbconnection");
 
 const updateRole = (obj) => {
   const sql = `UPDATE employees SET role_id = ? WHERE id = ?`;

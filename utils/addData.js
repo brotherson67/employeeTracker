@@ -1,4 +1,4 @@
-const db = require("../db/connection");
+const db = require("../db/dbconnection");
 
 const newDept = (obj) => {
   const sql = `INSERT INTO department (name) VALUES ('${obj.name}')`;
