@@ -19,9 +19,6 @@ const {
   deleteEmployee,
 } = require("./utils/alterData");
 
-const PORT = process.env.PORT || 3000;
-const app = express();
-
 // Array of data
 let deptArr = deptArrFill();
 let roleArr = roleArrFill();
@@ -57,6 +54,35 @@ const initPrompt = () => {
       return ans;
     });
 };
+//if add dept is chosen
+const addDept = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the name of the department?",
+        validate: function (name) {
+          if (!name) {
+            console.log("You must enter a name!");
+            return false;
+          }
+          return true;
+        },
+      },
+    ])
+    .then((ans) => {
+      const department = new Department(ans.name);
+      newDept(department);
+      console.log("Department Added!");
+      departments = getDept();
+      deptArr = deptArrFill();
+      return init();
+    });
+};
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 // EXPRESS MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
