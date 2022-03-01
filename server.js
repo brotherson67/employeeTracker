@@ -81,6 +81,36 @@ const addDept = () => {
     });
 };
 
+const addRole = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the name of the role?",
+        validate: function (title) {
+          if (!title) {
+            console.log("You must enter a name!");
+            return false;
+          }
+          return true;
+        },
+      },
+      {
+        type: "input",
+        name: "salary",
+        message: "What is the salary of the role?",
+      },
+      {
+        type: "list",
+        name: "department",
+        message: "What department does the role belong to?",
+        choices: deptArr,
+      },
+    ])
+    .then((ans) => {});
+};
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -92,5 +122,3 @@ app.use(express.json());
 db.connect((err) => {
   if (err) throw err;
 });
-
-test();
