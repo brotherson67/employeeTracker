@@ -181,6 +181,31 @@ const addEmployee = () => {
     });
 };
 
+const updateEmployeeRole = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "employee",
+        message: "Which employee would you like to update?",
+        choices: employeeArr,
+      },
+      {
+        type: "list",
+        name: "newRole",
+        message: "What is the employees new role?",
+        choices: roleArr,
+      },
+    ])
+    .then((ans) => {
+      updateRole(ans);
+      console.log("Role Updated!");
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
