@@ -126,6 +126,61 @@ const addRole = () => {
     });
 };
 
+const addEmployee = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "firstName",
+        message: "What is the employee's first name?",
+        validate: function (firstName) {
+          if (!firstName) {
+            console.log("You must enter a name!");
+            return false;
+          }
+          return true;
+        },
+      },
+      {
+        type: "input",
+        name: "lastName",
+        message: "What is the employee's last name?",
+        validate: function (lastName) {
+          if (!lastName) {
+            console.log("You must enter a name!");
+            return false;
+          }
+          return true;
+        },
+      },
+      {
+        type: "list",
+        name: "role",
+        message: "What is the employee's role?",
+        choices: roleArr,
+      },
+      {
+        type: "list",
+        name: "manager",
+        message: "Who is the employee's manager?",
+        choices: [{ name: "No Manager", value: null }].concat(employeeArr),
+      },
+    ])
+    .then((ans) => {
+      const employee = new Employee(
+        ans.firstName,
+        ans.lastName,
+        ans.role,
+        ans.manager
+      );
+      newEmployee(employee);
+      console.log("Employee Added!");
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
