@@ -3,7 +3,9 @@ const inquirer = require("inquirer");
 // const inputCheck = require('./utils/inputCheck');
 const db = require("./db/dbConnection");
 
-const { dept, role, employee } = require("./classes");
+const Department = require("./classes/dept");
+const Roles = require("./classes/role");
+const Employee = require("./classes/employee");
 const {
   deptArrFill,
   roleArrFill,
@@ -33,7 +35,7 @@ const initPrompt = () => {
   return inquirer
     .prompt({
       type: "list",
-      name: "choices",
+      name: "action",
       message: "What would you like to do?",
       choices: [
         "view all departments",
@@ -54,7 +56,7 @@ const initPrompt = () => {
       return ans;
     });
 };
-//if add dept is chosen
+
 const addDept = () => {
   return inquirer
     .prompt([
@@ -253,6 +255,7 @@ const removeDept = () => {
       return init();
     });
 };
+
 const removeRole = () => {
   return inquirer
     .prompt([
@@ -293,14 +296,45 @@ const removeEmployee = () => {
     });
 };
 
-const PORT = process.env.PORT || 3000;
-const app = express();
+const connect = () => {
+  db.connect((err) => {
+    if (err) throw err;
+  });
+};
 
-// EXPRESS MIDDLEWARE
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const init = () => {
+  initPrompt().then((ans) => {
+    switch (ans.action) {
+      case "view all departments":
+        console.table(departments);
+        return init();
+      case "view all roles":
+        console.table(roles);
+        return init();
+      case "view all employees":
+        console.table(employees);
+        return init();
+      case "add a department":
+        return addDept();
+      case "add a role":
+        return addRole();
+      case "add an employee":
+        return addEmployee();
+      case "update an employee role":
+        return updateEmployeeRole();
+      case "update an employee's manager":
+        return updateEmployeeManager();
+      case "delete a department":
+        return removeDept();
+      case "delete a role":
+        return removeRole();
+      case "delete an employee":
+        return removeEmployee();
+      case "quit":
+        process.exit();
+    }
+  });
+};
 
-// START SERVER AFTER DATABASE CONNECTION
-db.connect((err) => {
-  if (err) throw err;
-});
+connect();
+init();
