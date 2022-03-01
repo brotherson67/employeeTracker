@@ -40,6 +40,21 @@ firstPrompt = () => {
       return answer;
     });
 };
+const test = () => {
+  firstPrompt().then((answer) => {
+    switch (answer.choice) {
+      case "View departments":
+        console.table(getDepts);
+        return;
+      case "View all roles":
+        console.table(getRoles);
+        return;
+      case "View all employees":
+        console.table(getEmployees);
+        return;
+    }
+  });
+};
 
 // START SERVER AFTER DATABASE CONNECTION
 db.connect((err) => {
