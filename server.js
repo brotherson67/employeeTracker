@@ -2,15 +2,18 @@ const express = require("express");
 const inquirer = require("inquirer");
 // const inputCheck = require('./utils/inputCheck');
 const db = require("./db/dbConnection");
-const apiRoutes = require("./routes/apiRoutes");
-const { getAllEmployees, getAllDepts, getAllRoles } = require("./utils");
+
+const { dept, role, employee } = require("./classes");
+const {
+  deptArrFill,
+  roleArrFill,
+  employeeArrFill,
+} = require("./utils/toArray");
+const { getDept, getRoles, getEmployees } = require("./utils/getTables");
+const { newDept, newRole, newEmployee } = require("./utils/addData");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
-
-const getEmployees = getAllEmployees();
-const getDepts = getAllDepts();
-const getRoles = getAllRoles();
 
 // EXPRESS MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
