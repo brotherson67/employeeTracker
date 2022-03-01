@@ -274,6 +274,25 @@ const removeRole = () => {
     });
 };
 
+const removeEmployee = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "employee",
+        message: "Which employee would you like to delete?",
+        choices: employeeArr,
+      },
+    ])
+    .then((ans) => {
+      deleteEmployee(ans);
+      console.log("Employee Deleted!");
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
