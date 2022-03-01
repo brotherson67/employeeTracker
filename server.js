@@ -206,6 +206,74 @@ const updateEmployeeRole = () => {
     });
 };
 
+const updateEmployeeManager = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "employee",
+        message: "Which employee would you like to update?",
+        choices: employeeArr,
+      },
+      {
+        type: "list",
+        name: "newManager",
+        message: "Who is the employees new manager?",
+        choices: employeeArr,
+      },
+    ])
+    .then((ans) => {
+      updateManager(ans);
+      console.log("Manager Updated!");
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+
+const removeDept = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "department",
+        message: "Which department would you like to delete?",
+        choices: deptArr,
+      },
+    ])
+    .then((ans) => {
+      deleteDept(ans);
+      console.log("Department Deleted!");
+      departments = getDept();
+      deptArr = deptArrFill();
+      roles = getRoles();
+      roleArr = roleArrFill();
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+const removeRole = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "role",
+        message: "Which role would you like to delete?",
+        choices: roleArr,
+      },
+    ])
+    .then((ans) => {
+      deleteRole(ans);
+      console.log("Role Deleted!");
+      roles = getRoles();
+      roleArr = roleArrFill();
+      employees = getEmployees();
+      employeeArr = employeeArrFill();
+      return init();
+    });
+};
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
